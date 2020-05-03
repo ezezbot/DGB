@@ -5,37 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>DGB</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/app.css">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-  <center><h1>DGB - Detecting malicious code <span class="badge badge-secondary"><a class="white" href="https://github.com/ezezbot/DGB">Link</a></span></h1></center>
+<body class="bg-gray-900">
 
-    <table id="app" class="table">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">File</th>
-            <th scope="col">Type</th>
-            <th scope="col">Code</th>
-            <th scope="col">Certified</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="backdoor in backdoors">
-            <th scope="row">{{ backdoor.id }}</th>
-            <td>{{ backdoor.name }}</td>
-            <td>{{ backdoor.file }}</td>
-            <td>{{ backdoor.type }}</td>
-            <td><textarea class="form-control">{{ backdoor.code }}</textarea></td>
-            <td>{{ backdoor.certified }}</td>
-          </tr>
-        </tbody>
-    </table>
+    <center>
+      <br>
+      <div class="container mx-auto bg-white rounded-md">
+        <table id="app" class="table-fixed">
+          <thead>
+            <tr>
+              <th class="w-1/2 px-4 py-2">ID</th>
+              <th class="w-1/4 px-4 py-2">Name</th>
+              <th class="w-1/4 px-4 py-2">File</th>
+              <th class="w-1/4 px-4 py-2">Type</th>
+              <th class="w-1/4 px-4 py-2">Code</th>
+              <th class="w-1/4 px-4 py-2">Certified</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="backdoor in backdoors">
+              <td class="border px-4 py-2">{{ backdoor.id }}</td>
+              <td class="border px-4 py-2">{{ backdoor.name }}</td>
+              <td class="border px-4 py-2">{{ backdoor.file }}</td>
+              <td class="border px-4 py-2">{{ backdoor.type }}</td>
+              <td class="border px-4 py-2"><textarea class="form-control">{{ backdoor.code }}</textarea></td>
+              <td class="border px-4 py-2">{{ backdoor.certified }}</td>
+            </tr>
+          </tbody>
+      </table>
+      </div>
+    </center>
    
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+            backdoors: ''
+        },
+        created() {
+            fetch('./dev.json')
+                .then(response => response.json())
+                .then(json => {
+                    this.backdoors = json.backdoors
+                })
+        }
+    })
+
+    </script>
 </body>
 </html>
