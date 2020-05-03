@@ -1,5 +1,4 @@
-It's a project in lua, html, css and js. This project consists in detecting malicious code on a site.
+# DGB
 
-Library js: Vue.js
-
-Library css : TailwindCSS
+DGB is what?
+DGB is a system that will detect potentially malicious code on Garry's Mod juex.

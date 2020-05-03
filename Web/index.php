@@ -45,8 +45,7 @@
         data: {
             backdoors: ''
         }
-    })
-
+      })
     </script>
 </body>
 </html>
