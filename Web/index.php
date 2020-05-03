@@ -44,8 +44,26 @@
         el: '#app',
         data: {
             backdoors: ''
+        },
+        mounted: function () {
+          console.log("Vue.js is running...");
+          this.getAllBackdoors();
+        },
+        methods: {
+        getAllUsers: function () {
+          axios.get('./api/v1.php?action=read')
+          .then(function (response) {
+            console.log(response);
+
+            if (response.data.error) {
+              app.errorMessage = response.data.message;
+            } else {
+              app.users = response.data.users;
+            }
+          })
         }
-      })
+      }
+    });
     </script>
 </body>
 </html>
