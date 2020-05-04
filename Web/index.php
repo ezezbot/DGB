@@ -37,33 +37,5 @@
       </div>
     </center>
    
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script>
-      const app = new Vue({
-        el: '#app',
-        data: {
-            backdoors: ''
-        },
-        mounted: function () {
-          console.log("Vue.js is running...");
-          this.getAllBackdoors();
-        },
-        methods: {
-        getAllUsers: function () {
-          axios.get('./api/v1.php?action=read')
-          .then(function (response) {
-            console.log(response);
-
-            if (response.data.error) {
-              app.errorMessage = response.data.message;
-            } else {
-              app.users = response.data.users;
-            }
-          })
-        }
-      }
-    });
-    </script>
 </body>
 </html>
